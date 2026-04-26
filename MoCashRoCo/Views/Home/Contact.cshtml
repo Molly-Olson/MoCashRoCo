@@ -1,0 +1,112 @@
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<section class="bg-brand text-white py-5">
+    <div class="container py-3">
+        <div class="d-flex align-items-center gap-3 mb-2">
+            <a asp-controller="Home" asp-action="Index" class="text-white opacity-75 text-decoration-none small">Home</a>
+            <i class="bi bi-chevron-right text-white opacity-50 small"></i>
+            <span class="text-white small">Contact</span>
+        </div>
+        <h1 class="fw-bold display-5 mb-2">Contact Us</h1>
+        <p class="lead mb-0" style="opacity:.80">We'd love to hear from you. Let's talk!</p>
+    </div>
+</section>
+
+<div class="container my-5">
+    <div class="row g-5">
+        <!-- Form -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="fw-bold mb-1">Send us a message</h4>
+                    <p class="text-muted small mb-4">We typically respond within one business day.</p>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold small">First Name</label>
+                                <input type="text" class="form-control" placeholder="John" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold small">Last Name</label>
+                                <input type="text" class="form-control" placeholder="Doe" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold small">Email Address</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold small">Subject</label>
+                                <select class="form-select">
+                                    <option value="">Select a topic...</option>
+                                    <option>General Inquiry</option>
+                                    <option>Order Support</option>
+                                    <option>Returns &amp; Refunds</option>
+                                    <option>Product Question</option>
+                                    <option>Technical Issue</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold small">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="Tell us how we can help..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-brand btn-lg px-5 rounded-pill">
+                                    <i class="bi bi-send me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info sidebar -->
+        <div class="col-lg-4">
+            <h5 class="fw-bold mb-4">Contact Information</h5>
+            <ul class="list-unstyled mb-5">
+                @{
+                    var contacts = new[] {
+                        ("bi-envelope-fill","Email","support@mocashroweb.com"),
+                        ("bi-telephone-fill","Phone","(555) 123-4567"),
+                        ("bi-geo-alt-fill","Address","123 Commerce St, Springfield, IL"),
+                        ("bi-clock-fill","Business Hours","Mon–Fri, 9am – 5pm CST")
+                    };
+                }
+                @foreach (var (icon, label, value) in contacts)
+                {
+                    <li class="d-flex gap-3 mb-4">
+                        <div class="bg-brand-soft rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:42px;height:42px">
+                            <i class="bi @icon text-brand"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block small text-uppercase text-muted" style="letter-spacing:.05em">@label</strong>
+                            <span class="text-dark">@value</span>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a asp-controller="Products" asp-action="Index" class="text-decoration-none text-brand small"><i class="bi bi-arrow-right me-2"></i>Browse Products</a></li>
+                        <li class="mb-2"><a asp-controller="Cart" asp-action="Index" class="text-decoration-none text-brand small"><i class="bi bi-arrow-right me-2"></i>View Cart</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-brand small"><i class="bi bi-arrow-right me-2"></i>Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card border-0 bg-brand text-white rounded-3">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-2"><i class="bi bi-chat-dots me-2"></i>Live Chat</h6>
+                    <p class="small mb-3" style="opacity:.85">Available weekdays 9am–5pm. Average wait: under 2 minutes.</p>
+                    <button class="btn btn-accent btn-sm w-100 rounded-pill">Start Chat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "About Us";
+}
+
+<section class="bg-brand text-white py-5">
+    <div class="container py-3">
+        <div class="d-flex align-items-center gap-3 mb-2">
+            <a asp-controller="Home" asp-action="Index" class="text-white opacity-75 text-decoration-none small">Home</a>
+            <i class="bi bi-chevron-right text-white opacity-50 small"></i>
+            <span class="text-white small">About</span>
+        </div>
+        <h1 class="fw-bold display-5 mb-2">About MoCashRo Web Co.</h1>
+        <p class="lead mb-0" style="opacity:.80">Quality you can count on, service you can trust.</p>
+    </div>
+</section>
+
+<div class="container my-5">
+    <!-- Story -->
+    <div class="row g-5 align-items-center mb-5">
+        <div class="col-lg-6">
+            <h2 class="fw-bold mb-3">Our Story</h2>
+            <p class="text-muted lh-lg">Founded with a passion for quality and a commitment to customer satisfaction, MoCashRo Web Co. has grown from a small startup into a trusted online marketplace serving thousands of customers.</p>
+            <p class="text-muted lh-lg">We believe shopping online should be simple, secure, and enjoyable. That's why we carefully curate every product in our catalog — ensuring what you see is exactly what you get, at a price that makes sense.</p>
+            <div class="row g-3 mt-2">
+                @{
+                    var stats = new[] { ("5,000+","Happy Customers"), ("500+","Products"), ("50+","Brands"), ("99%","Satisfaction") };
+                }
+                @foreach (var (num, label) in stats)
+                {
+                    <div class="col-6">
+                        <div class="p-3 bg-brand-soft rounded-3 text-center">
+                            <h3 class="fw-bold text-brand mb-0">@num</h3>
+                            <small class="text-muted">@label</small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="https://picsum.photos/seed/about-team42/600/420" class="img-fluid rounded-3 shadow" alt="Our team" />
+        </div>
+    </div>
+
+    <!-- Values -->
+    <div class="py-5 border-top border-bottom mb-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Our Values</h2>
+            <p class="text-muted">The principles that guide everything we do</p>
+        </div>
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            @{
+                var values = new[] {
+                    ("bi-gem","Quality First","We only stock products we'd buy ourselves — no compromises on materials or craftsmanship."),
+                    ("bi-shield-check","Trust & Safety","Secure checkout, genuine reviews, and a 30-day return guarantee on every order."),
+                    ("bi-people-fill","Community","We give back 1% of profits to community initiatives that matter to our customers."),
+                    ("bi-lightbulb","Innovation","Continuously improving our platform to make your shopping experience faster and smarter.")
+                };
+            }
+            @foreach (var (icon, title, desc) in values)
+            {
+                <div class="col text-center">
+                    <div class="bg-brand-soft rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:72px;height:72px">
+                        <i class="bi @icon fs-2 text-brand"></i>
+                    </div>
+                    <h6 class="fw-bold">@title</h6>
+                    <p class="text-muted small lh-lg">@desc</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Team -->
+    <div class="mb-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Meet the Team</h2>
+            <p class="text-muted">The people behind MoCashRo Web Co.</p>
+        </div>
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            @{
+                var team = new[] {
+                    ("42","Alex Rivera","CEO & Founder"),
+                    ("64","Sam Kim","Head of Product"),
+                    ("65","Jordan Lee","Lead Developer"),
+                    ("91","Morgan Chen","Customer Experience")
+                };
+            }
+            @foreach (var (seed, name, role) in team)
+            {
+                <div class="col text-center">
+                    <img src="https://picsum.photos/seed/team@seed/200/200" class="rounded-circle mb-3 shadow-sm" style="width:100px;height:100px;object-fit:cover" alt="@name" />
+                    <h6 class="fw-bold mb-0">@name</h6>
+                    <small class="text-muted">@role</small>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-brand text-white rounded-3 p-5 text-center">
+        <h3 class="fw-bold mb-2">Ready to start shopping?</h3>
+        <p class="mb-4" style="opacity:.80">Explore our full catalog and find something you'll love.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Products" asp-action="Index" class="btn btn-accent btn-lg px-5 rounded-pill">Browse Products</a>
+            <a asp-controller="Home" asp-action="Contact" class="btn btn-outline-light btn-lg px-5 rounded-pill">Get in Touch</a>
+        </div>
+    </div>
+</div>
