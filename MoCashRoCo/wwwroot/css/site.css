@@ -1,9 +1,9 @@
 :root {
-    --brand: #2e7d32;
-    --brand-dark: #1b5e20;
-    --brand-light: #4caf50;
-    --accent: #ff6f00;
-    --accent-light: #ffa040;
+    --brand: #663399;
+    --brand-dark: #4a2470;
+    --brand-light: #8b52cc;
+    --accent: #fde047;
+    --accent-light: #facc15;
 }
 
 html { font-size: 16px; }
@@ -39,13 +39,13 @@ body { margin-bottom: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
 .btn-accent {
     background-color: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: #1a1a1a;
     font-weight: 600;
 }
 .btn-accent:hover, .btn-accent:focus {
     background-color: var(--accent-light);
     border-color: var(--accent-light);
-    color: #fff;
+    color: #1a1a1a;
 }
 
 /* ── Focus ring ────────────────────────────────────── */
