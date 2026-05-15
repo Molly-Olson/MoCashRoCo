@@ -18,6 +18,10 @@ namespace MoCashRoCo.Models
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { get; set; }
+        [MaxLength(500)]
+        public string? ShippingAddress { get; set; }
+        [MaxLength(500)]
+        public string? Notes { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
