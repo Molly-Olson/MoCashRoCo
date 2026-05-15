@@ -1,4 +1,5 @@
 using MoCashRoCo.Data;
+using MoCashRoCo.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MoCashRoCo
@@ -38,6 +39,23 @@ namespace MoCashRoCo
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
+
+            // Seed a default admin account if none exists
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                if (!db.Admins.Any())
+                {
+                    db.Admins.Add(new Admin
+                    {
+                        Username     = "admin",
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin1234!"),
+                        Role         = "Admin",
+                        CreatedAt    = DateTime.UtcNow
+                    });
+                    db.SaveChanges();
+                }
+            }
 
             app.Run();
         }

@@ -1,0 +1,47 @@
+@model MoCashRoCo.Models.AdminLoginViewModel
+@{ ViewData["Title"] = "Admin Login"; }
+
+<div class="container py-5" style="max-width:440px">
+    <div class="text-center mb-4">
+        <i class="bi bi-shield-lock-fill fs-1 text-brand"></i>
+        <h2 class="fw-bold mt-2">Admin Portal</h2>
+        <p class="text-muted">Staff access only</p>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-xl p-4">
+        <form asp-action="AdminLogin" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label fw-semibold">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                    <input asp-for="Username" class="form-control" placeholder="admin" autocomplete="username" />
+                </div>
+                <span asp-validation-for="Username" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input asp-for="Password" class="form-control" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-brand w-100 py-2 fw-semibold">
+                <i class="bi bi-shield-check me-2"></i>Sign In as Admin
+            </button>
+        </form>
+    </div>
+
+    <p class="text-center mt-3">
+        <a asp-action="Login" class="text-muted small text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Customer login
+        </a>
+    </p>
+</div>
+
+@section Scripts { @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); } }

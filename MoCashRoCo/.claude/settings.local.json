@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:\\\\Users\\\\olson\\\\source\\\\repos\\\\Capstone\\\\MoCashRoCo\\\\MoCashRoCo\" add CLAUDE.md)",
+      "Bash(git -C 'C:\\\\Users\\\\olson\\\\source\\\\repos\\\\Capstone\\\\MoCashRoCo\\\\MoCashRoCo' commit -m ' *)"
+    ]
+  }
+}

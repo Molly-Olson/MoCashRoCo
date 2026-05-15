@@ -1,0 +1,58 @@
+@model MoCashRoCo.Models.LoginViewModel
+@{ ViewData["Title"] = "Sign In"; }
+
+<div class="container py-5" style="max-width:480px">
+    <div class="text-center mb-4">
+        <i class="bi bi-person-circle fs-1 text-brand"></i>
+        <h2 class="fw-bold mt-2">Welcome Back</h2>
+        <p class="text-muted">Sign in to your MoCashRo account</p>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-xl p-4">
+        <form asp-action="Login" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold">Email Address</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input asp-for="Email" class="form-control" placeholder="you@example.com" autocomplete="email" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input asp-for="Password" class="form-control" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label text-muted small">Keep me signed in</label>
+            </div>
+
+            <button type="submit" class="btn btn-brand w-100 py-2 fw-semibold">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+            </button>
+        </form>
+    </div>
+
+    <p class="text-center text-muted mt-4 small">
+        Don't have an account?
+        <a asp-action="Register" class="text-brand fw-semibold text-decoration-none">Create one free</a>
+    </p>
+    <p class="text-center mt-2 small">
+        <a asp-action="AdminLogin" class="text-muted text-decoration-none">
+            <i class="bi bi-shield-lock me-1"></i>Admin login
+        </a>
+    </p>
+</div>
+
+@section Scripts { @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); } }

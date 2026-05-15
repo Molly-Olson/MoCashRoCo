@@ -14,7 +14,7 @@ body { margin-bottom: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
 .bg-accent       { background-color: var(--accent) !important; }
 .text-brand      { color: var(--brand) !important; }
 .text-accent     { color: var(--accent) !important; }
-.bg-brand-soft   { background-color: rgba(46,125,50,0.10) !important; }
+.bg-brand-soft   { background-color: rgba(102,51,153,0.10) !important; }
 .border-brand    { border-color: var(--brand) !important; }
 
 /* ── Brand buttons ─────────────────────────────────── */
@@ -50,7 +50,7 @@ body { margin-bottom: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
 
 /* ── Focus ring ────────────────────────────────────── */
 .btn:focus, .btn:active:focus, .form-control:focus, .form-select:focus {
-    box-shadow: 0 0 0 0.2rem rgba(46,125,50,0.30);
+    box-shadow: 0 0 0 0.2rem rgba(102,51,153,0.30);
 }
 
 /* ── Navbar ────────────────────────────────────────── */
@@ -137,7 +137,7 @@ body { margin-bottom: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
 
 /* ── Sidebar filters ───────────────────────────────── */
 .active-filter {
-    background-color: rgba(46,125,50,0.12) !important;
+    background-color: rgba(102,51,153,0.12) !important;
     color: var(--brand) !important;
     font-weight: 600;
     border-left: 3px solid var(--brand) !important;
