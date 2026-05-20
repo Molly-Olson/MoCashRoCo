@@ -1,0 +1,130 @@
+@model List<MoCashRoCo.Models.Order>
+@using MoCashRoCo.Models
+@{
+    ViewData["Title"] = "Manage Orders";
+    var currentStatus = ViewBag.CurrentStatus as string;
+}
+
+<div class="admin-wrap">
+
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <i class="bi bi-shield-lock-fill me-2"></i>Admin Portal
+    </div>
+    <nav class="admin-nav">
+      <a href="@Url.Action("Dashboard","Admin")" class="admin-nav-link">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+      <a href="@Url.Action("Products","Admin")" class="admin-nav-link">
+        <i class="bi bi-box-seam"></i> Products
+      </a>
+      <a href="@Url.Action("Orders","Admin")" class="admin-nav-link active">
+        <i class="bi bi-receipt"></i> Orders
+      </a>
+      <hr class="border-secondary opacity-25 my-2" />
+      <a href="@Url.Action("Index","Home")" class="admin-nav-link text-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Store
+      </a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h4 class="mb-0 fw-bold">Orders</h4>
+      <span class="text-secondary small">@Model.Count order(s)</span>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+      <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    }
+
+    <!-- Status filter tabs -->
+    <div class="d-flex gap-2 mb-3 flex-wrap">
+      <a href="@Url.Action("Orders","Admin")"
+         class="btn btn-sm @(currentStatus == null ? "btn-secondary" : "btn-outline-secondary")">All</a>
+      @foreach (var s in Enum.GetValues<OrderStatus>())
+      {
+        <a href="@Url.Action("Orders","Admin",new{status=s.ToString()})"
+           class="btn btn-sm @(currentStatus == s.ToString() ? "btn-secondary" : "btn-outline-secondary")">
+          @s
+        </a>
+      }
+    </div>
+
+    <div class="admin-card">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover mb-0 admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th style="width:190px;">Update Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var order in Model)
+            {
+              <tr>
+                <td class="text-secondary fw-semibold">#@order.OrderId</td>
+                <td>@(order.Customer?.Name ?? order.ContactName)</td>
+                <td class="text-secondary small">@order.ContactEmail</td>
+                <td class="text-secondary small">@order.OrderDate.ToLocalTime().ToString("MMM d, yyyy")</td>
+                <td class="text-secondary">@order.OrderItems.Count</td>
+                <td>@order.TotalAmount.ToString("C")</td>
+                <td><span class="badge @StatusBadge(order.Status)">@order.Status</span></td>
+                <td>
+                  <form asp-action="UpdateOrderStatus" asp-controller="Admin" method="post"
+                        class="d-flex gap-1 align-items-center">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@order.OrderId" />
+                    <select name="status" class="form-select form-select-sm admin-input" style="width:120px;">
+                      @foreach (var s in Enum.GetValues<OrderStatus>())
+                      {
+                        if (order.Status == s)
+                        {
+                          <option value="@s" selected>@s</option>
+                        }
+                        else
+                        {
+                          <option value="@s">@s</option>
+                        }
+                      }
+                    </select>
+                    <button type="submit" class="btn btn-outline-primary btn-sm px-2" title="Save">
+                      <i class="bi bi-check2"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            }
+            @if (!Model.Any())
+            {
+              <tr><td colspan="8" class="text-center text-secondary py-5">No orders found.</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+@functions {
+  string StatusBadge(OrderStatus s) => s switch
+  {
+    OrderStatus.Pending    => "bg-warning text-dark",
+    OrderStatus.Processing => "bg-primary",
+    OrderStatus.Shipped    => "bg-info text-dark",
+    OrderStatus.Complete   => "bg-success",
+    OrderStatus.Cancelled  => "bg-danger",
+    _                      => "bg-secondary"
+  };
+}

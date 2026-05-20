@@ -1,0 +1,160 @@
+@model MoCashRoCo.ViewModels.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="admin-wrap">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <i class="bi bi-shield-lock-fill me-2"></i>Admin Portal
+    </div>
+    <nav class="admin-nav">
+      <a href="@Url.Action("Dashboard","Admin")" class="admin-nav-link active">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+      <a href="@Url.Action("Products","Admin")" class="admin-nav-link">
+        <i class="bi bi-box-seam"></i> Products
+      </a>
+      <a href="@Url.Action("Orders","Admin")" class="admin-nav-link">
+        <i class="bi bi-receipt"></i> Orders
+      </a>
+      <hr class="border-secondary opacity-25 my-2" />
+      <a href="@Url.Action("Index","Home")" class="admin-nav-link text-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Store
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h4 class="mb-0 fw-bold">Dashboard</h4>
+      <span class="text-secondary small">@DateTime.Now.ToString("dddd, MMMM d, yyyy")</span>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    }
+
+    <!-- Stat cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-2">
+        <div class="stat-tile">
+          <div class="stat-tile-icon text-success"><i class="bi bi-box-seam"></i></div>
+          <div class="stat-tile-num">@Model.TotalProducts</div>
+          <div class="stat-tile-lbl">Active Products</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-tile">
+          <div class="stat-tile-icon text-primary"><i class="bi bi-receipt"></i></div>
+          <div class="stat-tile-num">@Model.TotalOrders</div>
+          <div class="stat-tile-lbl">Total Orders</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-tile">
+          <div class="stat-tile-icon text-warning"><i class="bi bi-currency-dollar"></i></div>
+          <div class="stat-tile-num">@Model.TotalRevenue.ToString("C")</div>
+          <div class="stat-tile-lbl">Total Revenue</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-tile @(Model.PendingOrders > 0 ? "stat-tile-alert" : "")">
+          <div class="stat-tile-icon text-danger"><i class="bi bi-hourglass-split"></i></div>
+          <div class="stat-tile-num">@Model.PendingOrders</div>
+          <div class="stat-tile-lbl">Pending Orders</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="stat-tile">
+          <div class="stat-tile-icon text-info"><i class="bi bi-people"></i></div>
+          <div class="stat-tile-num">@Model.TotalCustomers</div>
+          <div class="stat-tile-lbl">Customers</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-1">
+        <div class="stat-tile @(Model.LowStockProducts > 0 ? "stat-tile-alert" : "")">
+          <div class="stat-tile-icon text-warning"><i class="bi bi-exclamation-triangle"></i></div>
+          <div class="stat-tile-num">@Model.LowStockProducts</div>
+          <div class="stat-tile-lbl">Low Stock</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="d-flex gap-2 mb-4 flex-wrap">
+      <a href="@Url.Action("CreateProduct","Admin")" class="btn btn-success btn-sm px-3">
+        <i class="bi bi-plus-circle me-1"></i>Add Product
+      </a>
+      <a href="@Url.Action("Orders","Admin")" class="btn btn-outline-secondary btn-sm px-3">
+        <i class="bi bi-receipt me-1"></i>View All Orders
+      </a>
+      <a href="@Url.Action("Orders","Admin", new{status="Pending"})" class="btn btn-outline-warning btn-sm px-3">
+        <i class="bi bi-hourglass-split me-1"></i>Pending Orders (@Model.PendingOrders)
+      </a>
+    </div>
+
+    <!-- Recent orders -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h6 class="mb-0 fw-bold">Recent Orders</h6>
+        <a href="@Url.Action("Orders","Admin")" class="btn btn-link btn-sm text-decoration-none p-0">View all →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-dark table-hover mb-0 admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var order in Model.RecentOrders)
+            {
+              <tr>
+                <td class="text-secondary">#@order.OrderId</td>
+                <td>@(order.Customer?.Name ?? order.ContactName)</td>
+                <td class="text-secondary">@order.OrderDate.ToLocalTime().ToString("MMM d, h:mm tt")</td>
+                <td>@order.TotalAmount.ToString("C")</td>
+                <td><span class="badge @StatusBadge(order.Status)">@order.Status</span></td>
+                <td>
+                  <a href="@Url.Action("Orders","Admin")" class="btn btn-link btn-sm text-decoration-none p-0 text-secondary">
+                    manage →
+                  </a>
+                </td>
+              </tr>
+            }
+            @if (!Model.RecentOrders.Any())
+            {
+              <tr><td colspan="6" class="text-center text-secondary py-4">No orders yet.</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+@functions {
+  string StatusBadge(MoCashRoCo.Models.OrderStatus s) => s switch
+  {
+    MoCashRoCo.Models.OrderStatus.Pending    => "bg-warning text-dark",
+    MoCashRoCo.Models.OrderStatus.Processing => "bg-primary",
+    MoCashRoCo.Models.OrderStatus.Shipped    => "bg-info text-dark",
+    MoCashRoCo.Models.OrderStatus.Complete   => "bg-success",
+    MoCashRoCo.Models.OrderStatus.Cancelled  => "bg-danger",
+    _                                        => "bg-secondary"
+  };
+}
