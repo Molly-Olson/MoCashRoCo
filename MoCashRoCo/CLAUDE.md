@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MoCashRo Web Co. is an ASP.NET Core 9 MVC e-commerce template built as a capstone project. The goal is a reusable, marketable storefront + POS system that can be deployed and resold to small business clients. The SRS document lives in `/docs/MoCashRoWebCo_SRS_RoughDraft.docx`.
+MoCashRo Web Co. is an ASP.NET Core 9 MVC e-commerce template built as a capstone project. The goal is a reusable, marketable storefront + POS system that can be deployed and resold to small business clients. The SRS documents live in the repo root (`MoCashRo Web Co._SRS_v0.3.docx` is the current version).
 
 ## Common Commands
 
@@ -43,10 +43,13 @@ No test project exists yet.
 
 Utility classes `.bg-brand`, `.btn-brand`, `.btn-accent`, `.text-brand`, `.bg-brand-soft`, etc. are defined in `site.css` and used throughout views. To retheme, only the `:root` variables need to change.
 
+**Image uploads:** `AdminController` injects `IWebHostEnvironment` and has a `SaveProductImageAsync` helper that saves uploaded files to `wwwroot/images/products/{guid}{ext}` and returns the relative URL `/images/products/...`. Allowed extensions: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`. The `ProductFormViewModel` has both `ImageUrl` (string, fallback) and `ImageFile` (IFormFile, takes priority). Both product forms use `enctype="multipart/form-data"`.
+
 **Controllers and their responsibilities:**
 - `HomeController` — injects `AppDbContext`; loads featured products + categories for the landing page; also serves About, Contact, Privacy
 - `ProductsController` — product listing with category filter, keyword search, and sort; product detail with related products
 - `CartController` — all cart operations (add, remove, update quantity, clear); reads referer header to redirect back after add
+- `AdminController` — injects `AppDbContext` + `IWebHostEnvironment`; dashboard stats, product CRUD with image upload, order list + status update; all actions guarded by `IsAdmin()` session check
 
 **Key models:** `Product` (has `CategoryId` FK, `ImageUrl`, `IsActive`, `StockQuantity`), `Category`, `Order`/`OrderItem` (order pipeline), `Customer`, `Admin`, `SiteSettings` (singleton branding row). `CartItem` is a session-only view model, not a DB entity.
 
@@ -55,7 +58,8 @@ Utility classes `.bg-brand`, `.btn-brand`, `.btn-accent`, `.text-brand`, `.bg-br
 ## Things to Know
 
 - `btn-accent` uses dark text (`color: #1a1a1a`) because the accent is a light yellow — don't change it to `color: #fff`.
-- Product images use `picsum.photos` seeded URLs (e.g. `https://picsum.photos/seed/headphones42/600/400`). Replace with real image storage when productionizing.
-- The "Admin portal", "Checkout flow", and "Authentication" features are planned per the SRS but not yet implemented. Role-based auth (`Admin` / `Customer`) is the next major milestone.
+- Seeded products use `picsum.photos` URLs. Admins can replace them via the Edit Product form with a real upload or URL.
+- The admin portal, checkout, and auth are all fully implemented — ignore any SRS notes saying they're "planned".
 - `SiteSettings` is designed to hold per-client branding (business name, colors, logo, contact info). Currently seeded with one row; the intent is that a future admin UI edits this row to rebrand a deployment.
 - EF Core `HasData` seeding uses a fixed `DateTime` (`new DateTime(2025, 1, 1, ..., DateTimeKind.Utc)`) — never use `DateTime.UtcNow` in `HasData` as it breaks migration snapshots.
+- For production deployment: Azure App Service (Free F1) + Azure SQL Database is the recommended path — no provider changes needed. Set the connection string via `ConnectionStrings__DefaultConnection` environment variable.
