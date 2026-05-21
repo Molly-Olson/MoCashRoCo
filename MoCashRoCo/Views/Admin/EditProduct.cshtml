@@ -37,7 +37,7 @@
     </div>
 
     <div class="admin-card" style="max-width:700px;">
-      <form asp-action="EditProduct" asp-route-id="@Model.ProductId" method="post">
+      <form asp-action="EditProduct" asp-route-id="@Model.ProductId" method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="ProductId" />
         <div asp-validation-summary="ModelOnly" class="alert alert-danger small py-2"></div>
@@ -77,23 +77,15 @@
           </div>
 
           <div class="col-12">
-            <label asp-for="ImageUrl" class="form-label fw-semibold small text-secondary text-uppercase">Image URL</label>
-            <input asp-for="ImageUrl" class="form-control admin-input" id="imageUrlInput" />
+            <label class="form-label fw-semibold small text-secondary text-uppercase">Product Image</label>
+            <input asp-for="ImageFile" type="file" accept="image/*" class="form-control admin-input" id="imageFileInput" />
+            <div class="mt-2 text-secondary small">or paste a URL below (leave blank to keep current image)</div>
+            <input asp-for="ImageUrl" class="form-control admin-input mt-1" id="imageUrlInput" />
             <span asp-validation-for="ImageUrl" class="text-danger small"></span>
-            @if (!string.IsNullOrEmpty(Model.ImageUrl))
-            {
-              <div class="mt-2" id="imagePreview">
-                <img id="previewImg" src="@Model.ImageUrl" alt="Preview"
-                     style="max-width:200px;max-height:150px;object-fit:cover;border-radius:8px;border:1px solid #444;" />
-              </div>
-            }
-            else
-            {
-              <div class="mt-2" id="imagePreview" style="display:none;">
-                <img id="previewImg" src="" alt="Preview"
-                     style="max-width:200px;max-height:150px;object-fit:cover;border-radius:8px;border:1px solid #444;" />
-              </div>
-            }
+            <div class="mt-2" id="imagePreview" @(string.IsNullOrEmpty(Model.ImageUrl) ? "style=\"display:none;\"" : "")>
+              <img id="previewImg" src="@Model.ImageUrl" alt="Preview"
+                   style="max-width:200px;max-height:150px;object-fit:cover;border-radius:8px;border:1px solid #444;" />
+            </div>
           </div>
 
           <div class="col-12">
@@ -116,10 +108,21 @@
 
 @section Scripts {
 <script>
+  document.getElementById('imageFileInput')?.addEventListener('change', function () {
+    var file = this.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById('previewImg').src = e.target.result;
+      document.getElementById('imagePreview').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
   document.getElementById('imageUrlInput')?.addEventListener('input', function () {
+    if (document.getElementById('imageFileInput').files.length > 0) return;
     var preview = document.getElementById('imagePreview');
     var img = document.getElementById('previewImg');
-    if (this.value.startsWith('http')) {
+    if (this.value.startsWith('http') || this.value.startsWith('/')) {
       img.src = this.value;
       preview.style.display = 'block';
     } else {

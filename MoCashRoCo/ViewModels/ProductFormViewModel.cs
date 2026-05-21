@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace MoCashRoCo.ViewModels
 {
@@ -17,6 +18,9 @@ namespace MoCashRoCo.ViewModels
 
         [MaxLength(500), Display(Name = "Image URL")]
         public string? ImageUrl { get; set; }
+
+        [Display(Name = "Upload Image")]
+        public IFormFile? ImageFile { get; set; }
 
         [Required, Display(Name = "Category")]
         public int CategoryId { get; set; }

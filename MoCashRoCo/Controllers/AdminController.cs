@@ -10,9 +10,14 @@ namespace MoCashRoCo.Controllers
     public class AdminController : Controller
     {
         private readonly AppDbContext _db;
+        private readonly IWebHostEnvironment _env;
         private const string SessionUserRole = "UserRole";
 
-        public AdminController(AppDbContext db) => _db = db;
+        public AdminController(AppDbContext db, IWebHostEnvironment env)
+        {
+            _db = db;
+            _env = env;
+        }
 
         // ── Auth guard ─────────────────────────────────────────────────
         private bool IsAdmin() =>
@@ -90,12 +95,19 @@ namespace MoCashRoCo.Controllers
                 return View(model);
             }
 
+            var imageUrl = model.ImageUrl;
+            if (model.ImageFile is { Length: > 0 })
+            {
+                var uploaded = await SaveProductImageAsync(model.ImageFile);
+                if (uploaded != null) imageUrl = uploaded;
+            }
+
             var product = new Product
             {
                 Name          = model.Name,
                 Description   = model.Description,
                 Price         = model.Price,
-                ImageUrl      = model.ImageUrl,
+                ImageUrl      = imageUrl,
                 CategoryId    = model.CategoryId,
                 StockQuantity = model.StockQuantity,
                 IsActive      = model.IsActive,
@@ -149,10 +161,19 @@ namespace MoCashRoCo.Controllers
             product.Name          = model.Name;
             product.Description   = model.Description;
             product.Price         = model.Price;
-            product.ImageUrl      = model.ImageUrl;
             product.CategoryId    = model.CategoryId;
             product.StockQuantity = model.StockQuantity;
             product.IsActive      = model.IsActive;
+
+            if (model.ImageFile is { Length: > 0 })
+            {
+                var uploaded = await SaveProductImageAsync(model.ImageFile);
+                if (uploaded != null) product.ImageUrl = uploaded;
+            }
+            else if (!string.IsNullOrWhiteSpace(model.ImageUrl))
+            {
+                product.ImageUrl = model.ImageUrl;
+            }
 
             await _db.SaveChangesAsync();
             TempData["Success"] = $"Product \"{product.Name}\" updated.";
@@ -224,6 +245,25 @@ namespace MoCashRoCo.Controllers
         {
             var categories = await _db.Categories.OrderBy(c => c.Name).ToListAsync();
             ViewBag.Categories = new SelectList(categories, "CategoryId", "Name", selectedId);
+        }
+
+        private static readonly string[] AllowedImageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+
+        private async Task<string?> SaveProductImageAsync(IFormFile file)
+        {
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!AllowedImageExtensions.Contains(ext)) return null;
+
+            var folder = Path.Combine(_env.WebRootPath, "images", "products");
+            Directory.CreateDirectory(folder);
+
+            var fileName = $"{Guid.NewGuid()}{ext}";
+            var filePath = Path.Combine(folder, fileName);
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            return $"/images/products/{fileName}";
         }
     }
 }
