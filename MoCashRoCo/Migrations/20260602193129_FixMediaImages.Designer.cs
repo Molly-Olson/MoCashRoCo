@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoCashRoCo.Data;
 
@@ -11,9 +12,11 @@ using MoCashRoCo.Data;
 namespace MoCashRoCo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260602193129_FixMediaImages")]
+    partial class FixMediaImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -451,7 +454,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "First published in 1908, The Kybalion presents the seven Hermetic principles that govern all of existence: Mentalism, Correspondence, Vibration, Polarity, Rhythm, Cause and Effect, and Gender. Once you understand these laws, you cannot unsee them. A cornerstone of esoteric study.",
-                            ImageUrl = "https://m.media-amazon.com/images/I/A1V0D0EpG+L._SL500_.jpg",
+                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9780486474564-L.jpg",
                             IsActive = true,
                             Name = "The Kybalion — Three Initiates",
                             Price = 12.99m,

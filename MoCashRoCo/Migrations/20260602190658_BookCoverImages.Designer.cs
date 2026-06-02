@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoCashRoCo.Data;
 
@@ -11,9 +12,11 @@ using MoCashRoCo.Data;
 namespace MoCashRoCo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260602190658_BookCoverImages")]
+    partial class BookCoverImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,7 +262,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "A powerful cleansing and charging crystal, selenite carries an incredibly high vibration that instantly clears stagnant energy. Use it to cleanse other crystals, your aura, or your space. This silky-smooth wand is approximately 6 inches and sourced ethically.",
-                            ImageUrl = "https://images.unsplash.com/photo-1772911421293-362c64541490?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1597336465111-a392afd218bc?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Selenite Wand",
                             Price = 14.99m,
@@ -271,7 +274,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Known as the stone of spiritual protection and purification, amethyst quiets the mind and supports deep meditation. This natural cluster is a stunning centerpiece for any altar or shelf, radiating calming purple energy throughout your space.",
-                            ImageUrl = "https://images.unsplash.com/photo-1626470408813-f0059745d58b?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1632980205460-e490e885e848?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Amethyst Cluster",
                             Price = 28.99m,
@@ -283,7 +286,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The ultimate crystal of unconditional love and self-compassion. Polished into a smooth palm stone, this rose quartz is perfect for holding during meditation, placing on your heart chakra, or carrying with you as a reminder to lead with love.",
-                            ImageUrl = "https://images.unsplash.com/photo-1753734051188-b58b9ba4cdc1?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1593259213062-57b0ce5906cf?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Rose Quartz Palm Stone",
                             Price = 12.99m,
@@ -307,7 +310,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "A stone of transformation and magic, labradorite is the companion of seekers and healers. Its stunning blue-green flash (known as labradorescence) makes each sphere completely unique. Supports intuition, psychic abilities, and seeing through illusion.",
-                            ImageUrl = "https://images.unsplash.com/photo-1659468550840-602345a513d9?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1534883031555-7d18c6cf52e7?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Labradorite Sphere",
                             Price = 44.99m,
@@ -319,7 +322,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Known as the Merchant's Stone and the Light Maker, citrine carries the energy of the sun. It never needs cleansing, only giving. Use it to attract abundance, boost confidence, and clear away negative thought patterns. Tumbled smooth and warm in the hand.",
-                            ImageUrl = "https://images.unsplash.com/photo-1614092872241-c9a193f2b4aa?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1543384490-fc38bd91de41?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Citrine Tumbled Stone",
                             Price = 7.99m,
@@ -331,7 +334,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The master healer and amplifier of all crystals, clear quartz raises the vibrational frequency of everything around it. This natural generator point directs energy upward and outward, making it perfect for grids, altars, and intention-setting rituals.",
-                            ImageUrl = "https://images.unsplash.com/photo-1767131543309-be0996beb61e?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1562162135-9f64f33e623b?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Clear Quartz Generator Point",
                             Price = 19.99m,
@@ -343,7 +346,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Handcrafted from 99.9% pure quartz crystal, this 7-inch singing bowl resonates at the B note, directly activating the crown chakra and opening your connection to higher consciousness. The sustained tone is deeply meditative and profoundly clearing.",
-                            ImageUrl = "https://images.unsplash.com/photo-1740478949578-1b58ae46b584?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://images.unsplash.com/photo-1579291465308-fba6c5db2dfe?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "Crystal Singing Bowl — 7\" Crown Chakra (B Note)",
                             Price = 89.99m,
@@ -355,7 +358,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "528 Hz is known as the Miracle Tone — the frequency of love, DNA repair, and transformation. Used by healers, researchers, and sound therapists worldwide. Strike it, place the stem on the body or a crystal, and feel the resonance move through you.",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tuning_fork_on_resonator.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1662221720534-87433a842dc1?w=600&h=400&fit=crop&auto=format",
                             IsActive = true,
                             Name = "528 Hz Tuning Fork — Love Frequency",
                             Price = 34.99m,
@@ -451,7 +454,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "First published in 1908, The Kybalion presents the seven Hermetic principles that govern all of existence: Mentalism, Correspondence, Vibration, Polarity, Rhythm, Cause and Effect, and Gender. Once you understand these laws, you cannot unsee them. A cornerstone of esoteric study.",
-                            ImageUrl = "https://m.media-amazon.com/images/I/A1V0D0EpG+L._SL500_.jpg",
+                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9781585426133-L.jpg",
                             IsActive = true,
                             Name = "The Kybalion — Three Initiates",
                             Price = 12.99m,
@@ -475,7 +478,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The legendary audio program developed by Robert Monroe and the Monroe Institute, declassified and studied by the CIA. Using Hemi-Sync binaural beat technology, this program guides you into altered states of consciousness, out-of-body experiences, and expanded awareness. This is the real deal.",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Analysis_and_Assessment_of_Gateway_Process.pdf/page1-250px-Analysis_and_Assessment_of_Gateway_Process.pdf.jpg",
+                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9780517563700-L.jpg",
                             IsActive = true,
                             Name = "The Gateway Experience — Monroe Institute (Digital Program)",
                             Price = 149.99m,

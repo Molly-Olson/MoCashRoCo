@@ -2,6 +2,17 @@
 @{
     ViewData["Title"] = Model.Name;
     var related = ViewBag.Related as List<MoCashRoCo.Models.Product> ?? new();
+
+    // Real external links for Recommended Reading products
+    var bookLinks = new Dictionary<int, (string label, string url)>
+    {
+        { 15, ("Get this book on Amazon", "https://www.amazon.com/Breaking-Habit-Being-Yourself-Create/dp/1401938094") },
+        { 16, ("Get this book on Amazon", "https://www.amazon.com/dp/1401953115") },
+        { 17, ("Read free on Project Gutenberg", "https://www.gutenberg.org/ebooks/14209") },
+        { 18, ("Get this book on Amazon", "https://www.amazon.com/Psychic-Warrior-Americas-Foremost-Top-Secret/dp/0312964137") },
+        { 19, ("Read the CIA Document (PDF)", "https://www.cia.gov/readingroom/docs/cia-rdp96-00788r001700210016-5.pdf") },
+    };
+    var hasLink = bookLinks.TryGetValue(Model.ProductId, out var bookLink);
 }
 
 <!-- Breadcrumb -->
@@ -88,6 +99,29 @@
             </div>
 
             <p class="text-muted lh-lg mb-4">@Model.Description</p>
+
+            @if (hasLink)
+            {
+                <div class="mb-4 p-3 rounded-3" style="background:rgba(59,31,110,0.06); border-left: 3px solid var(--accent)">
+                    <a href="@bookLink.url" target="_blank" rel="noopener noreferrer"
+                       class="btn btn-accent rounded-pill px-4 me-2">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>@bookLink.label
+                    </a>
+                    @if (Model.ProductId == 19)
+                    {
+                        <div class="mt-3 small text-muted fst-italic">
+                            <i class="bi bi-stars me-1 text-brand"></i>
+                            <strong>About the missing Page 25:</strong> The CIA claimed for years they never had it.
+                            It was found sitting in the Monroe Institute's own archives in Faber, Virginia.
+                            <a href="https://www.vice.com/en/article/found-page-25-of-the-cias-gateway-report-on-astral-projection/"
+                               target="_blank" rel="noopener noreferrer" class="text-brand">Read the full story on Vice →</a>
+                            &nbsp;·&nbsp;
+                            <a href="https://www.scribd.com/document/678538785/Found-Page-25-of-the-CIA-s-Gateway-Report-on-Astral-Projection"
+                               target="_blank" rel="noopener noreferrer" class="text-brand">Read Page 25 itself →</a>
+                        </div>
+                    }
+                </div>
+            }
 
             <form asp-controller="Cart" asp-action="Add" method="post">
                 <input type="hidden" name="productId" value="@Model.ProductId" />

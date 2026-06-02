@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoCashRoCo.Data;
 
@@ -11,9 +12,11 @@ using MoCashRoCo.Data;
 namespace MoCashRoCo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260602174227_SacredFrequencyRebrand")]
+    partial class SacredFrequencyRebrand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,7 +262,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "A powerful cleansing and charging crystal, selenite carries an incredibly high vibration that instantly clears stagnant energy. Use it to cleanse other crystals, your aura, or your space. This silky-smooth wand is approximately 6 inches and sourced ethically.",
-                            ImageUrl = "https://images.unsplash.com/photo-1772911421293-362c64541490?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/selenite01/600/400",
                             IsActive = true,
                             Name = "Selenite Wand",
                             Price = 14.99m,
@@ -271,7 +274,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Known as the stone of spiritual protection and purification, amethyst quiets the mind and supports deep meditation. This natural cluster is a stunning centerpiece for any altar or shelf, radiating calming purple energy throughout your space.",
-                            ImageUrl = "https://images.unsplash.com/photo-1626470408813-f0059745d58b?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/amethyst02/600/400",
                             IsActive = true,
                             Name = "Amethyst Cluster",
                             Price = 28.99m,
@@ -283,7 +286,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The ultimate crystal of unconditional love and self-compassion. Polished into a smooth palm stone, this rose quartz is perfect for holding during meditation, placing on your heart chakra, or carrying with you as a reminder to lead with love.",
-                            ImageUrl = "https://images.unsplash.com/photo-1753734051188-b58b9ba4cdc1?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/rosequartz03/600/400",
                             IsActive = true,
                             Name = "Rose Quartz Palm Stone",
                             Price = 12.99m,
@@ -295,7 +298,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "One of the most powerful protective stones on Earth, black tourmaline creates an energetic shield against negativity, EMF, and psychic attack. Keep a piece near your front door, in your workspace, or carry it with you for constant energetic protection.",
-                            ImageUrl = "https://images.unsplash.com/photo-1753522312806-a78c9fee860e?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/tourmaline04/600/400",
                             IsActive = true,
                             Name = "Black Tourmaline Raw",
                             Price = 9.99m,
@@ -307,7 +310,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "A stone of transformation and magic, labradorite is the companion of seekers and healers. Its stunning blue-green flash (known as labradorescence) makes each sphere completely unique. Supports intuition, psychic abilities, and seeing through illusion.",
-                            ImageUrl = "https://images.unsplash.com/photo-1659468550840-602345a513d9?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/labradorite05/600/400",
                             IsActive = true,
                             Name = "Labradorite Sphere",
                             Price = 44.99m,
@@ -319,7 +322,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Known as the Merchant's Stone and the Light Maker, citrine carries the energy of the sun. It never needs cleansing, only giving. Use it to attract abundance, boost confidence, and clear away negative thought patterns. Tumbled smooth and warm in the hand.",
-                            ImageUrl = "https://images.unsplash.com/photo-1614092872241-c9a193f2b4aa?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/citrine06/600/400",
                             IsActive = true,
                             Name = "Citrine Tumbled Stone",
                             Price = 7.99m,
@@ -331,7 +334,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The master healer and amplifier of all crystals, clear quartz raises the vibrational frequency of everything around it. This natural generator point directs energy upward and outward, making it perfect for grids, altars, and intention-setting rituals.",
-                            ImageUrl = "https://images.unsplash.com/photo-1767131543309-be0996beb61e?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/clearquartz07/600/400",
                             IsActive = true,
                             Name = "Clear Quartz Generator Point",
                             Price = 19.99m,
@@ -343,7 +346,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Handcrafted from 99.9% pure quartz crystal, this 7-inch singing bowl resonates at the B note, directly activating the crown chakra and opening your connection to higher consciousness. The sustained tone is deeply meditative and profoundly clearing.",
-                            ImageUrl = "https://images.unsplash.com/photo-1740478949578-1b58ae46b584?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/singingbowl08/600/400",
                             IsActive = true,
                             Name = "Crystal Singing Bowl — 7\" Crown Chakra (B Note)",
                             Price = 89.99m,
@@ -355,7 +358,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "528 Hz is known as the Miracle Tone — the frequency of love, DNA repair, and transformation. Used by healers, researchers, and sound therapists worldwide. Strike it, place the stem on the body or a crystal, and feel the resonance move through you.",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tuning_fork_on_resonator.jpg",
+                            ImageUrl = "https://picsum.photos/seed/tuningfork528/600/400",
                             IsActive = true,
                             Name = "528 Hz Tuning Fork — Love Frequency",
                             Price = 34.99m,
@@ -367,7 +370,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The complete set of nine sacred Solfeggio frequencies: 174 Hz, 285 Hz, 396 Hz, 417 Hz, 528 Hz, 639 Hz, 741 Hz, 852 Hz, and 963 Hz. Each frequency targets a specific energetic center and supports healing on a cellular level. Includes storage pouch and activator mallet.",
-                            ImageUrl = "https://images.unsplash.com/photo-1662221720534-87433a842dc1?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/solfeggioset10/600/400",
                             IsActive = true,
                             Name = "Solfeggio Tuning Fork Set (9-piece)",
                             Price = 129.99m,
@@ -379,7 +382,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Handmade in Nepal by traditional craftsmen using a seven-metal alloy, this Tibetan bowl produces warm, complex overtones that ground and center the nervous system. Includes wooden striker and cushion ring. Ideal for beginners and seasoned practitioners alike.",
-                            ImageUrl = "https://images.unsplash.com/photo-1627764627459-ba29d6051fe0?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/tibetanbowl11/600/400",
                             IsActive = true,
                             Name = "Tibetan Singing Bowl Set",
                             Price = 54.99m,
@@ -391,7 +394,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 3,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Sustainably sourced from naturally fallen trees in Ecuador, palo santo (holy wood) has been used in shamanic ceremony for centuries. Its sweet, woody smoke clears negative energy, invites good spirits, and grounds the mind before meditation.",
-                            ImageUrl = "https://images.unsplash.com/photo-1612088486201-2cb53360306c?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/palosanto12/600/400",
                             IsActive = true,
                             Name = "Palo Santo Bundle (6 sticks)",
                             Price = 11.99m,
@@ -403,7 +406,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 3,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Traditionally used in Japa meditation to count mantras, this handknotted mala features 108 genuine amethyst beads with a guru bead and tassel. The number 108 is sacred across Hindu, Buddhist, and yogic traditions. Amethyst supports stillness and inner wisdom.",
-                            ImageUrl = "https://images.unsplash.com/photo-1556760647-90d218f7ca5b?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/mala13/600/400",
                             IsActive = true,
                             Name = "108-Bead Amethyst Mala",
                             Price = 38.99m,
@@ -415,7 +418,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 3,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Everything you need to build your first crystal grid. Includes a large Flower of Life cloth (18\"), one clear quartz center stone, six amethyst points, six rose quartz tumbles, and an instruction card. Set your intentions and let the geometry do the work.",
-                            ImageUrl = "https://images.unsplash.com/photo-1636392701520-e66bb50b313d?w=600&h=400&fit=crop&auto=format",
+                            ImageUrl = "https://picsum.photos/seed/crystalgrid14/600/400",
                             IsActive = true,
                             Name = "Crystal Grid Kit — Flower of Life",
                             Price = 49.99m,
@@ -427,7 +430,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Dr. Joe Dispenza combines quantum physics, neuroscience, brain chemistry, and genetics to show you that you are not doomed by your genes. This landmark book teaches you that you can rewire your brain and literally become a new person. One of the most important books you will ever read.",
-                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9781401938093-L.jpg",
+                            ImageUrl = "https://picsum.photos/seed/dispenza15/600/400",
                             IsActive = true,
                             Name = "Breaking the Habit of Being Yourself — Dr. Joe Dispenza",
                             Price = 18.99m,
@@ -439,7 +442,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The follow-up to Breaking the Habit, this book documents how ordinary people are doing the extraordinary. Through meditation, pineal gland activation, and heart-brain coherence, Dispenza shows how humans can access mystical states and heal themselves. Required reading for anyone serious about consciousness.",
-                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9781401953119-L.jpg",
+                            ImageUrl = "https://picsum.photos/seed/supernatural16/600/400",
                             IsActive = true,
                             Name = "Becoming Supernatural — Dr. Joe Dispenza",
                             Price = 19.99m,
@@ -451,7 +454,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "First published in 1908, The Kybalion presents the seven Hermetic principles that govern all of existence: Mentalism, Correspondence, Vibration, Polarity, Rhythm, Cause and Effect, and Gender. Once you understand these laws, you cannot unsee them. A cornerstone of esoteric study.",
-                            ImageUrl = "https://m.media-amazon.com/images/I/A1V0D0EpG+L._SL500_.jpg",
+                            ImageUrl = "https://picsum.photos/seed/kybalion17/600/400",
                             IsActive = true,
                             Name = "The Kybalion — Three Initiates",
                             Price = 12.99m,
@@ -463,7 +466,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "A firsthand account of the U.S. Army's classified remote viewing program, written by one of its operatives. David Morehouse takes you inside the world of controlled remote viewing — the ability to perceive locations, people, and events across time and space. Gripping, credible, and mind-expanding.",
-                            ImageUrl = "https://covers.openlibrary.org/b/isbn/9780312964139-L.jpg",
+                            ImageUrl = "https://picsum.photos/seed/morehouse18/600/400",
                             IsActive = true,
                             Name = "Psychic Warrior — David Morehouse",
                             Price = 15.99m,
@@ -475,7 +478,7 @@ namespace MoCashRoCo.Migrations
                             CategoryId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "The legendary audio program developed by Robert Monroe and the Monroe Institute, declassified and studied by the CIA. Using Hemi-Sync binaural beat technology, this program guides you into altered states of consciousness, out-of-body experiences, and expanded awareness. This is the real deal.",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Analysis_and_Assessment_of_Gateway_Process.pdf/page1-250px-Analysis_and_Assessment_of_Gateway_Process.pdf.jpg",
+                            ImageUrl = "https://picsum.photos/seed/gateway19/600/400",
                             IsActive = true,
                             Name = "The Gateway Experience — Monroe Institute (Digital Program)",
                             Price = 149.99m,

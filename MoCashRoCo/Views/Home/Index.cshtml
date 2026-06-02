@@ -4,11 +4,10 @@
     var categories = ViewBag.Categories as List<MoCashRoCo.Models.Category> ?? new();
     var catIcons = new Dictionary<string, string>
     {
-        {"Electronics","bi-cpu-fill"},
-        {"Clothing","bi-bag-fill"},
-        {"Home & Kitchen","bi-house-fill"},
-        {"Sports & Outdoors","bi-trophy-fill"},
-        {"Books & Media","bi-book-fill"}
+        {"Crystals & Stones","bi-gem"},
+        {"Sound Healing","bi-music-note-beamed"},
+        {"Meditation Tools","bi-moon-stars-fill"},
+        {"Recommended Reading","bi-book-fill"}
     };
 }
 
@@ -22,30 +21,31 @@
 
 <!-- Hero -->
 <section class="hero-section">
+    <div class="hero-crystal-bg"></div>
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-7" style="position:relative;z-index:1">
                 <span class="badge bg-accent px-3 py-2 mb-3 rounded-pill text-uppercase fw-semibold" style="letter-spacing:.08em">
-                    <i class="bi bi-stars me-1"></i>New Arrivals
+                    <i class="bi bi-stars me-1"></i>High Vibration Finds
                 </span>
                 <h1 class="display-4 fw-bold text-white mb-4 lh-sm">
-                    Quality You Can<br><span style="color:var(--accent)">Count On.</span>
+                    Trust the<br><span style="color:var(--accent)">Frequency.</span>
                 </h1>
-                <p class="lead text-white mb-4" style="opacity:.80">
-                    Discover premium products curated for every lifestyle — from tech to fashion, home to outdoors.
+                <p class="lead text-white mb-4" style="opacity:.85">
+                    Crystals, sound healing tools, and sacred wisdom for the ones who know there's more to this life than meets the eye.
                 </p>
                 <div class="d-flex flex-wrap gap-3 mb-4">
                     <a asp-controller="Products" asp-action="Index" class="btn btn-accent btn-lg px-5 rounded-pill shadow">
-                        Shop Now <i class="bi bi-arrow-right ms-2"></i>
+                        Shop the Vibe <i class="bi bi-gem ms-2"></i>
                     </a>
                     <a asp-controller="Home" asp-action="About" class="btn btn-outline-light btn-lg px-5 rounded-pill">
-                        Learn More
+                        Our Story
                     </a>
                 </div>
                 <div class="d-flex flex-wrap gap-4 text-white small" style="opacity:.75">
                     <span><i class="bi bi-truck me-1"></i>Free shipping over $50</span>
-                    <span><i class="bi bi-shield-check me-1"></i>Secure checkout</span>
-                    <span><i class="bi bi-arrow-return-left me-1"></i>30-day returns</span>
+                    <span><i class="bi bi-shield-check me-1"></i>Ethically sourced</span>
+                    <span><i class="bi bi-heart me-1"></i>Curated with love</span>
                 </div>
             </div>
         </div>
@@ -53,15 +53,15 @@
 </section>
 
 <!-- Value Props -->
-<section class="py-4 bg-white border-bottom">
+<section class="py-4 border-bottom section-floral" style="background:#fdf9f4">
     <div class="container">
         <div class="row row-cols-2 row-cols-md-4 g-3 text-center">
             @{
                 var props = new[] {
                     ("bi-truck","Free Shipping","On orders over $50"),
-                    ("bi-shield-check","Secure Payments","SSL encrypted checkout"),
+                    ("bi-gem","Ethically Sourced","Crystals chosen with intention"),
                     ("bi-arrow-return-left","Easy Returns","30-day return policy"),
-                    ("bi-headset","24/7 Support","Always here to help")
+                    ("bi-heart","Curated with Love","Every item hand-selected")
                 };
             }
             @foreach (var (icon, title, sub) in props)
@@ -81,11 +81,12 @@
 <!-- Shop by Category -->
 @if (categories.Any())
 {
-    <section class="py-5 bg-light">
+    <section class="py-5 section-crystal" style="background:#f3efe8">
         <div class="container">
             <div class="text-center mb-4">
-                <h2 class="fw-bold">Shop by Category</h2>
-                <p class="text-muted">Find exactly what you're looking for</p>
+                <p class="sacred-divider">✦ ✦ ✦</p>
+                <h2 class="fw-bold" style="font-family:'Playfair Display',serif">Explore the Sacred</h2>
+                <p class="text-muted fst-italic">Every path leads somewhere beautiful</p>
             </div>
             <div class="row row-cols-2 row-cols-md-5 g-3">
                 @foreach (var cat in categories)
@@ -109,12 +110,13 @@
 <!-- Featured Products -->
 @if (featured.Any())
 {
-    <section class="py-5">
+    <section class="py-5 section-floral" style="background:#faf8f5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-end mb-4">
                 <div>
-                    <h2 class="fw-bold mb-1">Featured Products</h2>
-                    <p class="text-muted mb-0">Handpicked favorites from our collection</p>
+                    <p class="sacred-divider mb-1">✦ ✦ ✦</p>
+                    <h2 class="fw-bold mb-1" style="font-family:'Playfair Display',serif">Curated for You</h2>
+                    <p class="text-muted mb-0 fst-italic">Handpicked with intention</p>
                 </div>
                 <a asp-controller="Products" asp-action="Index" class="btn btn-outline-brand rounded-pill px-4">
                     View All <i class="bi bi-arrow-right ms-1"></i>
@@ -157,10 +159,10 @@
 <!-- CTA Banner -->
 <section class="bg-brand py-5">
     <div class="container text-center text-white">
-        <h2 class="fw-bold mb-2">Ready to find your next favorite?</h2>
-        <p class="mb-4" style="opacity:.80">Browse our full catalog of premium products, all backed by our quality guarantee.</p>
+        <h2 class="fw-bold mb-2">Your path is already calling you. ✨</h2>
+        <p class="mb-4" style="opacity:.80">Every crystal, every frequency, every book in this shop found its way here for a reason — and so did you.</p>
         <a asp-controller="Products" asp-action="Index" class="btn btn-accent btn-lg px-5 rounded-pill shadow">
-            Explore All Products <i class="bi bi-arrow-right ms-2"></i>
+            Explore the Shop <i class="bi bi-gem ms-2"></i>
         </a>
     </div>
 </section>

@@ -40,10 +40,11 @@ namespace MoCashRoCo
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
-            // Seed a default admin account if none exists
+            // Ensure DB is up to date and seed a default admin account if none exists
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
                 if (!db.Admins.Any())
                 {
                     db.Admins.Add(new Admin
